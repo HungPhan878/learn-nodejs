@@ -6,17 +6,16 @@
   </head>
   <body>
     <div class="app">
-      <header>
-        <h1>Header</h1>
-      </header>
 
-      <main>
-         {{{body}}}
+    {{> header}}
+
+      <main class="container">
+        {{{body}}}
       </main>
+      {{!-- {{{body}}} đây là lấy content từ home đưa vào trong main layouts vì layout chính là cấu trúc trang mà. --}}
 
-      <footer>
-        <h2>Footer</h2>
-      </footer>
+    {{> footer}}
+
     </div>
 
   </body>
