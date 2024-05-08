@@ -8,7 +8,13 @@ const handlebars = require("express-handlebars");
 const app = express();
 const port = 3000;
 
+// static file và file dùng để public cho mn xem
+app.use(express.static(path.join(__dirname, "public")));
+
+// http logger
 app.use(morgan("combined"));
+
+//template engines
 app.engine(
   "hbs",
   handlebars.engine({
