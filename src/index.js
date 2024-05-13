@@ -2,6 +2,7 @@
 
 const express = require("express");
 const morgan = require("morgan");
+const route = require("./routes");
 const path = require("path");
 const handlebars = require("express-handlebars");
 // handlebars là một obj
@@ -22,17 +23,19 @@ app.engine(
   })
 );
 app.set("view engine", "hbs");
-app.set("views", path.join(__dirname, "resources/views"));
 //path là util của js dùng để quản lý đường dẫn.
 //__dirname đường dẫn đến thư mục chúng ta đang làm việc .
+app.set("views", path.join(__dirname, "resources/views"));
+// để tạo ra obj body và lưu formdata gửi từ method post lên.
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.render("home");
-});
-
-app.get("/news", (req, res) => {
-  res.render("news");
-});
+// routes init
+route(app);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
