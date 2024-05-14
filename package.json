@@ -4,6 +4,7 @@
   "description": "learn about nodejs",
   "main": "src/index.js",
   "scripts": {
+    "prettier": "prettier --write --single-quote --tab-width 4 --trailing-comma all 'src/**/*.{js,json,scss}'",
     "start": "nodemon --inspect src/index.js",
     "watch": "node-sass -w src/resources/scss/app.scss src/public/css/app.css",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -30,9 +31,18 @@
     "express": "^4.19.2",
     "express-handlebars": "^7.1.2"
   },
+  "lint-staged": {
+    "src/**/*.{js,json,scss}": "prettier --write --single-quote --tab-width 4 --trailing-comma all"
+  },
+  "hooks": {
+    "pre-commit": "lint-staged"
+  },
   "devDependencies": {
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
     "morgan": "^1.10.0",
     "node-sass": "^9.0.0",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "prettier": "^3.2.5"
   }
 }
