@@ -1,10 +1,13 @@
+const { mongoosesToObject } = require("../../utils/mongoose.js");
 const Course = require("../models/Course");
 
 class SiteControllers {
   // GET path:/
   index(req, res, next) {
     Course.find({})
-      .then((courses) => res.json(courses))
+      .then((courses) => {
+        res.render("home", { courses: mongoosesToObject(courses) });
+      })
       .catch(next);
 
     // res.render('home');
